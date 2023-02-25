@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Registration </title>
+</head>
+<body>
+<h1>Registration</h1>
+<form th:action="/registration" method="post">
+    <div><label> Почта : <input type="email" name="email"/> </label></div>
+    <div><label> Логин : <input type="text" name="username"/> </label></div>
+    <div><label> Фамилия : <input type="text" name="secondName"/> </label></div>
+    <div><label> Отчество : <input type="text" name="thirdName"/> </label></div>
+    <div><label> Дата рождения : <input type="date" name="dateOfBirth"/> </label></div>
+    <div><label> Пароль: <input type="password" name="password"/> </label></div>
+    <div><label> Повторите пароль: <input type="password" name="passwordrpt"/> </label></div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    <div><input type="submit" value="Зарегистрироваться"/></div>
+</form>
+</body>
+</html>
