@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>FAV</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Main page</h1>
+    <div class="value">
+        <form method="post">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+            <input type="text" name ="song" placeholder="Любимая песня">
+            <input type="text" name ="dish" placeholder="Любимое блюдо">
+            <input type="color" name ="color" placeholder="Любимый цвет">
+            <input type="date" name ="date" placeholder="Любимая дата">
+            <input type="number" name ="digit" placeholder="Любимое число">
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+<h1>Список пользователей</h1>
+<table>
+    {{#users}}
+        <thead>
+        <tr>
+            <th>Имя</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{username}}</td>
+        </tr>
+        </tbody>
+    {{/users}}
+</table>
+    <div class="authorize__btn_operation_logout">
+        <form action="/logout" method="post">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+            <input type="submit" value="Sign out">
+        </form>
+    </div>
+</body>
+</html>

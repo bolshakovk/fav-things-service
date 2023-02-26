@@ -17,15 +17,6 @@
             <button type="submit">Отправить</button>
         </form>
     </div>
-    {{#messages}}
-    <div>
-        <b>{{id}}</b>
-        <span>{{song}}</span>
-        <i>{{dish}}</i>
-        <q>{{digit}}</q>
-        <b>{{usrName}}</b>
-    </div>
-    {{/messages}}
     <div class="authorize__btn_operation_logout">
         <form action="/logout" method="post">
             <input type="hidden" name="_csrf" value="{{_csrf.token}}">
