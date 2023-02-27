@@ -20,11 +20,14 @@ public class User implements UserDetails {
     private Long id;
     private String email;
     private String username;
+    private String firstName;
     private String secondName;
     private String thirdName;
     private String password;
-    //private String birth;
+    private String birth;
     private boolean active;
+
+    private String activationCode;
 
 
     @Enumerated(EnumType.STRING)
@@ -66,17 +69,5 @@ public class User implements UserDetails {
         return active;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", firstName='" + username + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", thirdName='" + thirdName + '\'' +
-                ", password='" + password + '\'' +
-                ", active=" + active +
-                ", roles=" + roles +
-                '}';
-    }
+
 }

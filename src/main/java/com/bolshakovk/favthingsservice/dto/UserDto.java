@@ -14,6 +14,7 @@ import java.util.Date;
 public class UserDto {
 
     private String username;
+    private String firstName;
     private String secondName;
     private String thirdName;
     private String password;
@@ -23,24 +24,14 @@ public class UserDto {
     @ValidEmail
     private String email;
 
-    public UserDto(String username, String secondName, String thirdName, String password, String email, String role, String birth) {
+    public UserDto(String username, String secondName, String thirdName, String password, String email, String role, String firstName, String birth) {
         this.username = username;
         this.secondName = secondName;
         this.thirdName = thirdName;
         this.password = password;
         this.email = email;
+        this.firstName = firstName;
         this.role = role;
         this.birth = birth;
-    }
-
-    @Override
-    public String toString() {
-        return "UserDto{" +
-                "firstName='" + username + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", thirdName='" + thirdName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                '}';
     }
 }

@@ -34,7 +34,10 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/webjars/**",
             // -- Swagger UI v3 (OpenAPI)
             "/v3/api-docs/**",
-            "/swagger-ui/**"
+            "/swagger-ui/**",
+            "/",
+            "/registration",
+            "/activate/*"
             // other public endpoints of your API may be appended to this array
     };
 
@@ -48,20 +51,18 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 
                 .authorizeRequests()
-                .antMatchers("/main-admin").hasAuthority(Role.ADMIN.name())
-                .antMatchers("/", "/registration", "/swagger-ui/**").permitAll()
-                //.antMatchers(AUTH_WHITELIST).permitAll()
+                    .antMatchers("/main-admin").hasAuthority(Role.ADMIN.name())
+                    .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .apply(jwtConfigurer)
+                    .apply(jwtConfigurer)
                 .and()
                 .formLogin()
                     .loginPage("/login")
                     .successHandler(successHandler)
                     .permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                    .logout().permitAll();
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

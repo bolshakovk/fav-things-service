@@ -4,6 +4,8 @@ import com.bolshakovk.favthingsservice.dto.AuthentificationRequestDto;
 import com.bolshakovk.favthingsservice.entity.User;
 import com.bolshakovk.favthingsservice.repository.UserRepository;
 import com.bolshakovk.favthingsservice.security.JwtTokenProvider;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +25,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("api/vi/auth")
+@Api(value = "апи для авторизации")
 public class AuthRestController {
 
     private final AuthenticationManager authenticationManager;
@@ -36,6 +39,7 @@ public class AuthRestController {
     }
 
     @PostMapping("/login")
+    @ApiOperation(value = "Апи для аутентификации")
     public ResponseEntity<?> authenticate(@RequestBody AuthentificationRequestDto authentificationRequestDto){
         try {
             String username = authentificationRequestDto.getUsername();
@@ -50,6 +54,7 @@ public class AuthRestController {
             return new ResponseEntity<>("invalid combination of creds", HttpStatus.FORBIDDEN);
         }
     }
+    @ApiOperation(value = "Апи логаута")
     @PostMapping("/logout")
     public void logout(HttpServletRequest request, HttpServletResponse response){
         SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();

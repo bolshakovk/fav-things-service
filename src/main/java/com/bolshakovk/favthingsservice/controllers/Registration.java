@@ -9,7 +9,9 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,29 +35,36 @@ public class Registration {
     public String addUser(
             @RequestParam(name="email") String email,
             @RequestParam(name="username") String username,
+            @RequestParam(name="firstName") String firstName,
             @RequestParam(name="secondName") String secondName,
             @RequestParam(name="thirdName") String thirdName,
             @RequestParam(name="password") String password,
-            @RequestParam(name="role") String role,
             @RequestParam(name="birth") String birth,
-            Map<String, Object> model) {
-        UserDto userDto = new UserDto(
-                username,
-                secondName,
-                thirdName,
-                password,
-                email,
-                role,
-                birth);
-                //user.getBirth());
-        //User userFromDb = userRepository.findByUsername(user.getUsername());
-        //if (userFromDb != null) {
-            model.put("message", "User exists!");
-        //    return "registration";
-       // }
-       // System.out.println("user from db: " + userFromDb);
-        System.out.println("user dto: " + userDto);
+            @RequestParam(name="role") String role,
+            Map<String, Object> model)
+    {
+        UserDto userDto = new UserDto(username, secondName, thirdName, password, email, role, firstName, birth);
+        if (!userService.registerNewUserAccount(userDto)){
+            model.put("message", "user exist");
+        }
+
         userService.registerNewUserAccount(userDto);
         return "redirect:/login";
+    }
+
+    @GetMapping("/activate/{code}")
+    @ApiOperation(value = "Апи для подтверждения пользователя кодом из почты")
+    public String activate(Model model, @PathVariable String code){
+        boolean isActive = userService.activateUser(code);
+        System.out.println("clicked link!");
+        System.out.println(userService.findAll());
+        if (isActive){
+            System.out.println("юзер активирован");
+            model.addAttribute("message:", "Юзер активирован");
+        }else {
+            System.out.println("юзер не найден");
+            model.addAttribute("message:", "Код не найден");
+        }
+        return "login";
     }
 }

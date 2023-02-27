@@ -4,15 +4,16 @@
   <title>Registration </title>
 </head>
 <body>
-<h1>Registration</h1>
+<h1>Регистрация</h1>
 <form th:action="/registration" method="post">
-    <div><label> Почта : <input type="email" name="email"/> </label></div>
-    <div><label> Логин : <input type="text" name="username"/> </label></div>
-    <div><label> Фамилия : <input type="text" name="secondName"/> </label></div>
-    <div><label> Отчество : <input type="text" name="thirdName"/> </label></div>
-    <div><label> Дата рождения : <input type="date" name="birth"/> </label></div>
-    <div><label> Пароль: <input type="password" name="password"/> </label></div>
-    <div><label> Повторите пароль: <input type="password" name="passwordrpt"/> </label></div>
+    <div><label> Почта : <input type="email" name="email" required/> </label></div>
+    <div><label> Логин : <input type="text" name="username" required/> </label></div>
+    <div><label> Имя: <input type="text" name="firstName" required/> </label></div>
+    <div><label> Фамилия : <input type="text" name="secondName" required/> </label></div>
+    <div><label> Отчество : <input type="text" name="thirdName" required/> </label></div>
+    <div><label> Дата рождения : <input type="date" name="birth" required/> </label></div>
+    <div><label> Пароль: <input type="password" name="password" required/> </label></div>
+
     <div>
         <label>админ: <input type="radio" id="admin" name="role" value="admin"></label>
         <label>юзер: <input type="radio" id="user" name="role" value="user"></label>
