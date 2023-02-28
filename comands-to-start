@@ -1,0 +1,6 @@
+
+docker build -t fav-things-service.jar .
+
+docker-compose up -d
+
+http://localhost:8090/
