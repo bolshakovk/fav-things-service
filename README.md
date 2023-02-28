@@ -18,6 +18,8 @@
 - docker-compose up -d
 
 - зайдем на http://localhost:8090/
+  
+  
 
 проверяем работоспособность
 
@@ -83,6 +85,8 @@
 ![image](https://user-images.githubusercontent.com/71641509/221922949-52f5bd3f-2c0d-46fd-89cd-187d313c93fc.png)
 
 <h3>Документация на сваггере</h3>
+  
+  <i> по ссылке http://localhost:8090/swagger-ui.html#/ </i>
 
 ![image](https://user-images.githubusercontent.com/71641509/221930854-d900ad1e-1111-4cba-9f36-cc280852f2d7.png)
 
