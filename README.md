@@ -52,6 +52,15 @@
 
 ![image](https://user-images.githubusercontent.com/71641509/221879941-2ad9f659-8a91-4ed3-874a-c15023f4c7cc.png)
 
+* При переходе по ссылке видим: 
+
+![image](https://user-images.githubusercontent.com/71641509/221922099-8b7ae8e4-5d2b-4388-a8df-36888917a24c.png)
+
+* Если еще раз: 
+
+![image](https://user-images.githubusercontent.com/71641509/221922205-db1f37e7-fd57-4bc2-859f-5407b517cdc9.png)
+
+
 * Зайдя по кредам, можно увидеть окно обычного пользователя:
 
 ![image](https://user-images.githubusercontent.com/71641509/221880221-4c6516fd-c307-467c-92d2-f52a8f9a3a64.png)
@@ -59,3 +68,12 @@
 * Создадим пользователя с ролью админа и посмотрим что будет у него на странице: 
 
 ![image](https://user-images.githubusercontent.com/71641509/221880666-41bd1aeb-c5e7-4b10-8d26-5027af1ed0a7.png)
+
+<h3>Логирование</h3>
+
+Использовал аспекты, вот что содержится в БД:
+
+![image](https://user-images.githubusercontent.com/71641509/221922949-52f5bd3f-2c0d-46fd-89cd-187d313c93fc.png)
+
+<h2>Что не успел</h2>
+Не успел обработать ошибки, сделать jтесты
