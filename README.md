@@ -4,6 +4,11 @@
 
 - mvn clean package
 
+<i>если на этом этапе не получилось, вероятнее всего постгрес не дает создать пэкеджи, для этого в docker-compose в Idea следует нажать галочку на postgres(запустить постгрес)
+
+![image](https://user-images.githubusercontent.com/71641509/221931949-a5f87cea-ec75-4c1b-9667-436759b16fa3.png)
+
+
 Сбилдим образ:
 
 - docker build -t fav-things-service.jar .
