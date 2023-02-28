@@ -12,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.util.Date;
+import java.util.Map;
+
 
 @Controller
 @AllArgsConstructor
@@ -28,8 +28,8 @@ public class FavUserPageController {
     }
     @ApiOperation(value = "Апи для загрузки страницы админа и просмотра юзеров")
     @GetMapping(value="/main-admin")
-    public String initAdmin(Model model){
-        model.addAttribute("users", userService.findAll());
+    public String initAdmin(Map<String, Object> model){
+        userService.initModel(model);
         return "main-admin";
     }
 
@@ -42,12 +42,11 @@ public class FavUserPageController {
             @RequestParam(name="dish") String dish,
             @RequestParam(name="color") String color,
             @RequestParam(name="date") String date,
-            @RequestParam(name="digit") Integer digit) throws ParseException {
+            @RequestParam(name="digit") Integer digit) {
 
 
 
         Fav favEntity = new Fav(dish, song, digit, date, color, user);
-        System.out.println(favEntity);
         favService.save(favEntity);
         return "main-user";
     }
@@ -60,10 +59,9 @@ public class FavUserPageController {
             @RequestParam(name="color") String color,
             @RequestParam(name="date") String date,
             @RequestParam(name="digit") Integer digit,
-            Model model) throws ParseException {
+            Model model)  {
 
         Fav favEntity = new Fav(dish, song, digit, date, color, user);
-        System.out.println(favEntity);
         favService.save(favEntity);
         return "main-admin";
     }

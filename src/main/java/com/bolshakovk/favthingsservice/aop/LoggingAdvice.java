@@ -21,12 +21,15 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class LoggingAdvice {
     private final LogService logService;
+
+    // точки врезки в контроллеры
     @Pointcut("@annotation(com.bolshakovk.favthingsservice.annotation.Loggable)")
     public void loggableMethods() {
     }
     @Pointcut("execution(* com.bolshakovk.favthingsservice.controllers.*.*(..))")
     public void allMethodsPackageController() {
     }
+    //логирую до pjp и после
     @Around("allMethodsPackageController()")
     public Object applicationLogger(ProceedingJoinPoint joinPoint) throws JsonProcessingException {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -36,6 +39,7 @@ public class LoggingAdvice {
         Object[] array = joinPoint.getArgs();
         log.info("Вызван метод : " + className + ":" + methodName + "с аргументами" + mapper.writeValueAsString(array) +
                 ": имя пользователя: " + username);
+        //кину в базу дтошку по времени, уровень лога, название метода, аргументы, текущего пользователя
         logService.addLogInDB(new LogDto(LocalDateTime.now(),
                         "INFO",
                         log.getName() + "." + methodName,

@@ -15,8 +15,4 @@ public class FavServiceImpl implements FavService {
         favRepository.saveAndFlush(favEntity);
     }
 
-    @Override
-    public void delete(Fav favEntity) {
-        favRepository.delete(favEntity);
-    }
 }

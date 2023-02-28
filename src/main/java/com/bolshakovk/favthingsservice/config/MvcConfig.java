@@ -7,14 +7,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
+//говорим чтобы приложение видело данные урлы, + некоторые бины(валидатор пароля, почты)
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry viewControllerRegistry) {
           viewControllerRegistry.addViewController("/login").setViewName("login");
+          viewControllerRegistry.addViewController("/activate").setViewName("activate");
           viewControllerRegistry.addViewController("/registration").setViewName("registration");
           viewControllerRegistry.addViewController("/main-user").setViewName("main-user");
-        viewControllerRegistry.addViewController("/main-admin").setViewName("main-admin");
+          viewControllerRegistry.addViewController("/main-admin").setViewName("main-admin");
           viewControllerRegistry.addViewController("/").setViewName("welcome");
     }
     @Bean

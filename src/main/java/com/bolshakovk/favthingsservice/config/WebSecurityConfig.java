@@ -23,8 +23,8 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired UserServiceImpl userService;
 
     @Autowired private LoginSuccessHandler successHandler;
+    //ендпоинты, по которым можно ходить без авторизации
     private static final String[] AUTH_WHITELIST = {
-            // -- Swagger UI v2
             "/v2/api-docs",
             "/swagger-resources",
             "/swagger-resources/**",
@@ -32,15 +32,13 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/configuration/security",
             "/swagger-ui.html",
             "/webjars/**",
-            // -- Swagger UI v3 (OpenAPI)
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/",
             "/registration",
             "/activate/*"
-            // other public endpoints of your API may be appended to this array
     };
-
+    //для джвт токена
     public WebSecurityConfig(JwtConfigurer jwtConfigurer) {
         this.jwtConfigurer = jwtConfigurer;
     }
@@ -51,11 +49,11 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 
                 .authorizeRequests()
-                    .antMatchers("/main-admin").hasAuthority(Role.ADMIN.name())
+                    .antMatchers("/main-admin").hasAuthority(Role.ADMIN.name()) // всего лишь 2 роли, авторизированные могут ходить только на юзер форму и админ, засекьюрил админа
                     .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                    .apply(jwtConfigurer)
+                    .apply(jwtConfigurer) //добавил джвт конфигурацию тут
                 .and()
                 .formLogin()
                     .loginPage("/login")
@@ -64,6 +62,7 @@ public class  WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .logout().permitAll();
     }
+    //аутентификатор принимает сервис пользователя и шифровальщик пароля
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)

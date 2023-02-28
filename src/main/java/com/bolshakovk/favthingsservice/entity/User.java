@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
-
+//сущность пользователя
 @Entity
 @Data
 @Table(name = "usr")

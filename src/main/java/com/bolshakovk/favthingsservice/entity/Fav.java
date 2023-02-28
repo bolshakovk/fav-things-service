@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
-
+//сущность предпочтений пользователя
 @Data
 @Entity
 public class Fav {

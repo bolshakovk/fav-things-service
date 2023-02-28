@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
+//конфиг для отправки почты, все креды наверное лучше вписывать вам, чтобы у вас работало(ваши хосты порты и пр.)
 @Configuration
 public class MailConfig {
     @Value("${spring.mail.host}")

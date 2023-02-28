@@ -1,13 +1,11 @@
 package com.bolshakovk.favthingsservice.service.impl;
 
-import antlr.StringUtils;
 import com.bolshakovk.favthingsservice.dto.UserDto;
+import com.bolshakovk.favthingsservice.dto.UserForModel;
 import com.bolshakovk.favthingsservice.entity.User;
 import com.bolshakovk.favthingsservice.repository.UserRepository;
 import com.bolshakovk.favthingsservice.service.MailSender;
 import com.bolshakovk.favthingsservice.utils.Role;
-import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,9 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class UserServiceImpl  implements UserDetailsService {
@@ -26,7 +22,6 @@ public class UserServiceImpl  implements UserDetailsService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private ModelMapper modelMapper;
 
     @Autowired
     private MailSender mailSender;
@@ -36,10 +31,6 @@ public class UserServiceImpl  implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public UserDto convertToDto(User user){
-        UserDto userDto = modelMapper.map(user, UserDto.class);
-        return userDto;
-    }
     public boolean registerNewUserAccount(UserDto userDto)  {
         User user = new User();
         user.setUsername(userDto.getUsername());
@@ -66,6 +57,21 @@ public class UserServiceImpl  implements UserDetailsService {
         mailSender.send(user.getEmail(), "Activation code", message);
         userRepository.save(user);
         return true;
+    }
+    public void initModel(Map<String, Object> model){
+        List<User> list = findAll();
+        List<UserForModel> userForModels = new ArrayList<>();
+        for (int i = 0; i < list.size(); i ++){
+            UserForModel user = new UserForModel(
+                    list.get(i).getFirstName(),
+                    list.get(i).getSecondName(),
+                    list.get(i).getThirdName(),
+                    list.get(i).getBirth(),
+                    list.get(i).getEmail(),
+                    list.get(i).getRoles().toString());
+            userForModels.add(user);
+        }
+        model.put("listForModel", userForModels);
     }
     public List<User> findAll(){
         return userRepository.findAll();

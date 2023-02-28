@@ -20,7 +20,6 @@ public class MailSender {
         mailMessage.setTo(mailTo);
         mailMessage.setSubject(subject);
         mailMessage.setText(message);
-        System.out.println("sended form mail sender");
         mailSender.send(mailMessage);
     }
 }

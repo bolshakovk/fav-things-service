@@ -1,8 +1,6 @@
 package com.bolshakovk.favthingsservice.controllers;
 
 import com.bolshakovk.favthingsservice.dto.UserDto;
-import com.bolshakovk.favthingsservice.entity.User;
-import com.bolshakovk.favthingsservice.repository.UserRepository;
 import com.bolshakovk.favthingsservice.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,7 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -56,15 +57,13 @@ public class Registration {
     @ApiOperation(value = "Апи для подтверждения пользователя кодом из почты")
     public String activate(Model model, @PathVariable String code){
         boolean isActive = userService.activateUser(code);
-        System.out.println("clicked link!");
-        System.out.println(userService.findAll());
+        List<String> types = Arrays.asList("Юзер активирован", "Код не найден");
+        model.addAttribute("message", types);
         if (isActive){
-            System.out.println("юзер активирован");
-            model.addAttribute("message:", "Юзер активирован");
+            model.addAttribute("m", types.get(0));
         }else {
-            System.out.println("юзер не найден");
-            model.addAttribute("message:", "Код не найден");
+            model.addAttribute("m", types.get(1));
         }
-        return "login";
+        return "activate";
     }
 }
