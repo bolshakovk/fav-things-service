@@ -49,10 +49,10 @@ public class UserServiceImpl  implements UserDetailsService {
         if (emailExists(user.getEmail())){
             return false;
         }
+        user.setActive(false);
         user.setActivationCode(UUID.randomUUID().toString());
-        user.setActive(true);
         String message = ("Привет,"+  user.getUsername() +" \n Перейди по ссылке для подтверждения регистрации:" +
-                " http://localhost:8080/activate/" + user.getActivationCode()
+                " http://localhost:8090/activate/" + user.getActivationCode()
         +"\n ваш логин: " + user.getUsername());
         mailSender.send(user.getEmail(), "Activation code", message);
         userRepository.save(user);
@@ -91,6 +91,7 @@ public class UserServiceImpl  implements UserDetailsService {
             return false;
         }
         user.setActivationCode(null);
+        user.setActive(true);
         userRepository.save(user);
         return true;
     }

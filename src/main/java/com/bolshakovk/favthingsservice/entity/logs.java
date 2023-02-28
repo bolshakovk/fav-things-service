@@ -2,21 +2,19 @@ package com.bolshakovk.favthingsservice.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@Data
 @Entity
+@Data
 public class logs {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "log_date_time", nullable = false, length = 1000)
+    private String log_date_time;
 
-    private LocalDateTime logDateTime;
-    private String level;
+    private String level_info;
     private String logger;
     private String message;
     private String username;
-
 }
