@@ -75,5 +75,14 @@
 
 ![image](https://user-images.githubusercontent.com/71641509/221922949-52f5bd3f-2c0d-46fd-89cd-187d313c93fc.png)
 
+<h3>Документация на сваггере</h3>
+
+![image](https://user-images.githubusercontent.com/71641509/221930854-d900ad1e-1111-4cba-9f36-cc280852f2d7.png)
+
+![image](https://user-images.githubusercontent.com/71641509/221930976-148415a6-aaa4-433f-a4b9-19a0e846fe7a.png)
+
+![image](https://user-images.githubusercontent.com/71641509/221931110-4fe28046-14a8-4ae2-ab00-1d2fbccb2775.png)
+
+
 <h2>Что не успел</h2>
 Не успел обработать ошибки, сделать jтесты
