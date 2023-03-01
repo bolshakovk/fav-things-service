@@ -79,6 +79,7 @@
 ![image](https://user-images.githubusercontent.com/71641509/221880666-41bd1aeb-c5e7-4b10-8d26-5027af1ed0a7.png)
 
 <h3>Как пользователь хранится в БД(уже с подтвержденной почтой)<h3>
+  
 ![image](https://user-images.githubusercontent.com/71641509/222092428-fea5a37d-8f56-4940-8403-119e42b4f0c6.png)
 
 
